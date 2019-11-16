@@ -1,7 +1,7 @@
 import { getData } from "./data.api";
 import { createModel } from "@rematch/core";
 
-import { sortSongs } from "./data.utils";
+import { sortSongs, SortedSongs } from "./data.utils";
 export interface DataInterface {
   band: string;
   album: string;
@@ -11,8 +11,7 @@ const dataModel = createModel({
   name: "data",
   state: { data: undefined },
   reducers: {
-    setData(state, payload: DataInterface[]) {
-      console.log(payload);
+    setData(state, payload: SortedSongs[]) {
       return {
         ...state,
         data: payload
@@ -23,10 +22,9 @@ const dataModel = createModel({
   effects: {
     async fetchData() {
       await getData().then(result => {
-        console.log(result);
         const sortedSongs = sortSongs(result);
-        console.log(sortedSongs);
-        this.setData(result);
+
+        this.setData(sortedSongs);
       });
     }
   },

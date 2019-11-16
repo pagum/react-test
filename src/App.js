@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Provider } from "react-redux";
+
 import { store } from "./store";
 import MainPage from "./MainPage";
 

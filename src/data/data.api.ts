@@ -3,5 +3,5 @@ import { DataInterface } from "./data.model.js";
 
 export const getData = () =>
   new Promise<DataInterface[]>(resolve =>
-    setTimeout(() => resolve(data), 3000)
+    setTimeout(() => resolve(data), 2000)
   );

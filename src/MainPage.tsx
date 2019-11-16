@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { Dispatch, RootState, select } from "./store";
-import { AlbumExpansionPanel } from "./AlbumExpansionPanel";
-import { DataInterface } from "./data/data.model";
+import { AlbumExpansionPanel } from "./ExpansionPanels/AlbumExpansionPanel";
+import { SortedSongs } from "./data/data.utils";
 interface MainPageProps {
   fetchData: any;
-  data: DataInterface[];
+  data: SortedSongs[];
 }
-const MainPage = ({ fetchData, data }: any) => {
+const MainPage = ({ fetchData, data }: MainPageProps) => {
   useEffect(() => {
     fetchData();
-  }, []);
-  return (
-    <div>
-      <AlbumExpansionPanel data={data} />
-
-      {data && data.map((song: any) => console.log(song))}
-    </div>
-  );
+  });
+  return <AlbumExpansionPanel data={data} />;
 };
 
 const mapState = (state: RootState) => ({
