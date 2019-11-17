@@ -36,7 +36,7 @@ export const BandPanel = ({ data }: BandPanelProps) => {
   return (
     <AlbumPanel>
       {albums.map(album => (
-        <div key={album.title}>
+        <div key={`${album.songs[0].band} ${album.title}`}>
           <ExpansionPanel>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
@@ -47,7 +47,7 @@ export const BandPanel = ({ data }: BandPanelProps) => {
             </ExpansionPanelSummary>
             <AlbumExpansionPanelDetails>
               {album.songs.map(song => (
-                <AlbumList key={song.song}>
+                <AlbumList key={`${song.album} ${song.song}`}>
                   <AlbumListItem button>
                     <ListItemAvatar>
                       <Avatar>
